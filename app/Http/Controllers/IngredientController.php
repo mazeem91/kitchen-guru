@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Requests\UpdateIngredientRequest;
 use App\Http\Resources\IngredientResource;
-use App\Http\Resources\IngredientResourceCollection;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
@@ -18,10 +17,9 @@ class IngredientController extends Controller
      */
     public function index(Request $request)
     {
-        // public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null);
         $page = $request->query('page', 1);
         $paginator = Ingredient::paginate(10,['*'], 'page', $page);
-        return new IngredientResourceCollection($paginator);
+        return IngredientResource::collection($paginator);
     }
 
     /**

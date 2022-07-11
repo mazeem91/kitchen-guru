@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ingredient;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,26 +16,14 @@ class IngredientSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ingredients')->insert([
-            'name' =>fake()->word(),
-            'supplier' =>fake()->name(),
-            'measure' => "kg",
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-        DB::table('ingredients')->insert([
-            'name' =>fake()->word(),
-            'supplier' =>fake()->name(),
-            'measure' => "g",
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-        DB::table('ingredients')->insert([
-            'name' =>fake()->word(),
-            'supplier' =>fake()->name(),
-            'measure' => "pieces",
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        for ($i=0; $i < 30; $i++) {
+            DB::table('ingredients')->insert([
+                'name' =>fake()->word(),
+                'supplier' =>fake()->name(),
+                'measure' => fake()->randomElement(Ingredient::MEASURE_VALUES),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
     }
 }
