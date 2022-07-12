@@ -41,7 +41,6 @@ class RecipeController extends Controller
      */
     public function store(StoreRecipeRequest $request)
     {
-        $recipe = Recipe::create($request->all());
         $ingredientsIds = $request->input('recipe_ingredients.*.ingredient_id');
         $ingredientsMeasures = DB::table('ingredients')
             ->select('id', 'measure')
@@ -49,17 +48,18 @@ class RecipeController extends Controller
             ->get()
             ->pluck('measure', 'id');
 
+        $recipeIngredientsData = [];
         foreach ($request->input('recipe_ingredients') as $recipeIngredient) {
             $ingredientId = $recipeIngredient['ingredient_id'];
-            $recipe->recipe_ingredients()->create(
-                [
-                    'recipe_id' => $recipe->id,
-                    'ingredient_id' => $ingredientId,
-                    'amount' => $recipeIngredient['amount'],
-                    'amount_measure' => $ingredientsMeasures[$ingredientId]
-                ]
-            );
+            $recipeIngredientsData[] = [
+                'ingredient_id' => $ingredientId,
+                'amount' => $recipeIngredient['amount'],
+                'amount_measure' => $ingredientsMeasures[$ingredientId]
+            ];
         }
+
+        $recipe = Recipe::create($request->all());
+        $recipe->recipe_ingredients()->createMany($recipeIngredientsData);
         return new RecipeResource($recipe);
     }
 

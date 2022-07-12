@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRecipeRequest extends FormRequest
+class StoreMemberBoxRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class StoreRecipeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'description' => ['required', 'string'],
-            'recipe_ingredients' => ['required', 'array'],
-            'recipe_ingredients.*.ingredient_id' => ['required', 'distinct', 'exists:App\Models\Ingredient,id'],
-            'recipe_ingredients.*.amount' => ['required', 'integer'],
+            'delivery_date' => ['required', 'date', 'after:+2 days'],
+            'recipe_ids' => ['required', 'array', 'max:4'],
+            'recipe_ids.*' => ['exists:App\Models\Recipe,id']
         ];
     }
 }
