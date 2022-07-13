@@ -1,13 +1,13 @@
 # Kitchen Guru API - Laravel Base
 
 ## Requirements
-- Git
+- Git.
 - Unused Port `80`.
-- Docker, Docker Compose
+- Docker, Docker Compose.
 
 ## Local Development Environment Setup 
-- Clone this repository.
-- Run `start.sh` which will:
+- Clone repository then `cd`.
+- Execute `start.sh` which will:
     - leverage Laravel's `Sail` CLI to setup all the required docker services and application dependencies.
     - Fetch the `.env` file for the local development project.
     - Start all the required docker containers via sail.

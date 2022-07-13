@@ -15,7 +15,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreMemberBoxRequest extends FormRequest
 {
     /**
-     * @OA\Property
+     * @OA\Property(example="2022-07-10")
      *
      * @var date
      */

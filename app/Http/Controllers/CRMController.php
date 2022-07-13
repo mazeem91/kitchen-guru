@@ -10,6 +10,38 @@ use App\Http\Resources\RecipeIngredientResource;
 class CRMController extends Controller
 {
 
+    /**
+     * @OA\Get(
+     *      path="/crm/ingredients-required",
+     *      tags={"Ingredients Required"},
+     *      summary="Get list of Ingredients Required",
+     *      description="Returns list of Ingredients Required",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\Parameter(
+     *          name="order_date",
+     *          description="order date",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="date",
+     *              example="2022-07-10"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/RecipeIngredient")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
     public function getRequiredIngredients(Request $request)
     {
         $fromDate = $request->query('order_date', Carbon::now()->toDateString());
