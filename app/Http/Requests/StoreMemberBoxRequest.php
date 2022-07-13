@@ -4,8 +4,30 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *      title="Store MemberBox request",
+ *      description="Store MemberBox request body data",
+ *      type="object",
+ *      required={"delivery_date", "recipe_ids"}
+ * )
+ */
 class StoreMemberBoxRequest extends FormRequest
 {
+    /**
+     * @OA\Property
+     *
+     * @var date
+     */
+    private $delivery_date;
+
+     /**
+     * @OA\Property
+     *
+     * @var int[]
+     */
+    private $recipe_ids;
+
     /**
      * Determine if the user is authorized to make this request.
      *

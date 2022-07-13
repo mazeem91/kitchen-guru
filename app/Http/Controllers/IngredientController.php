@@ -78,7 +78,7 @@ class IngredientController extends Controller
      *      @OA\Response(
      *          response=201,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Ingredient")
+     *          @OA\JsonContent(ref="#/components/schemas/IngredientResource")
      *       ),
      *      @OA\Response(
      *          response=400,
@@ -124,7 +124,7 @@ class IngredientController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Ingredient")
+     *          @OA\JsonContent(ref="#/components/schemas/IngredientResource")
      *       ),
      *      @OA\Response(
      *          response=400,

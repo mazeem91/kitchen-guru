@@ -4,8 +4,37 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *      title="Store Recipe request",
+ *      description="Store Recipe request body data",
+ *      type="object",
+ *      required={"name", "description", "recipe_ingredients"}
+ * )
+ */
 class StoreRecipeRequest extends FormRequest
 {
+    /**
+     * @OA\Property
+     *
+     * @var string
+     */
+    private $name;
+
+     /**
+     * @OA\Property
+     *
+     * @var string
+     */
+    private $description;
+
+     /**
+     * @OA\Property
+     *
+     * @var \App\Models\RecipeIngredient[]
+     */
+    private $recipe_ingredients;
+
     /**
      * Determine if the user is authorized to make this request.
      *

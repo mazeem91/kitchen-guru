@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @OA\Schema(@OA\Xml(name="Recipe"))
+ */
 class Recipe extends Model
 {
     use HasFactory;
@@ -12,6 +15,26 @@ class Recipe extends Model
     protected $with = ['recipe_ingredients'];
     protected $fillable = ['name', 'description'];
 
+    /**
+     * @OA\Property
+     *
+     * @var string
+     */
+    private $name;
+
+     /**
+     * @OA\Property
+     *
+     * @var string
+     */
+    private $description;
+
+     /**
+     * @OA\Property
+     *
+     * @var \App\Models\RecipeIngredient[]
+     */
+    private $recipe_ingredients;
 
     public function recipe_ingredients()
     {

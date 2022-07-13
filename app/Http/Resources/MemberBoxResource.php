@@ -4,8 +4,24 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     title="MemberBoxResource",
+ *     description="MemberBox resource",
+ *     @OA\Xml(
+ *         name="MemberBoxResource"
+ *     )
+ * )
+ */
 class MemberBoxResource extends JsonResource
 {
+    /**
+     * @OA\Property(title="Data wrapper")
+     *
+     * @var \App\Models\MemberBox[]
+     */
+    private $data;
+
     /**
      * Transform the resource into an array.
      *

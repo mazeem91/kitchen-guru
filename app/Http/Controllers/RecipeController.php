@@ -12,6 +12,37 @@ use App\Http\Requests\UpdateRecipeRequest;
 class RecipeController extends Controller
 {
     /**
+     * @OA\Get(
+     *      path="/recipes",
+     *      operationId="getRecipesList",
+     *      tags={"Recipes"},
+     *      summary="Get list of recipes",
+     *      description="Returns list of recipes",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\Parameter(
+     *          name="page",
+     *          description="Page number",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer",
+     *              default=1
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/RecipeResource")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -34,6 +65,35 @@ class RecipeController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *      path="/recipes",
+     *      operationId="storeRecipe",
+     *      tags={"Recipes"},
+     *      summary="Store new recipe",
+     *      description="Returns recipe data",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StoreRecipeRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/RecipeResource")
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreRecipeRequest  $request
@@ -64,6 +124,40 @@ class RecipeController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *      path="/recipes/{id}",
+     *      operationId="getRecipeById",
+     *      tags={"Recipes"},
+     *      summary="Get recipe information",
+     *      description="Returns recipe data",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Recipe id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/RecipeResource")
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      * Display the specified resource.
      *
      * @param  \App\Models\Recipe  $recipe

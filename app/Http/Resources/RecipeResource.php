@@ -4,8 +4,24 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     title="RecipeResource",
+ *     description="Recipe resource",
+ *     @OA\Xml(
+ *         name="RecipeResource"
+ *     )
+ * )
+ */
 class RecipeResource extends JsonResource
 {
+    /**
+     * @OA\Property(title="Data wrapper")
+     *
+     * @var \App\Models\Recipe[]
+     */
+    private $data;
+
     /**
      * Transform the resource into an array.
      *

@@ -11,11 +11,32 @@ use Illuminate\Foundation\Http\FormRequest;
  *      title="Store Ingredient request",
  *      description="Store Ingredient request body data",
  *      type="object",
- *      required={"name"}
+ *      required={"name", "supplier", "measure"}
  * )
  */
 class StoreIngredientRequest extends FormRequest
 {
+    /**
+     * @OA\Property
+     *
+     * @var string
+     */
+    private $name;
+
+     /**
+     * @OA\Property
+     *
+     * @var string
+     */
+    private $supplier;
+
+     /**
+     * @OA\Property(enum={"kg", "g", "pieces"})
+     *
+     * @var string
+     */
+    private $measure;
+
     /**
      * Determine if the user is authorized to make this request.
      *

@@ -16,12 +16,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class IngredientResource extends JsonResource
 {
     /**
-     * @OA\Property(
-     *     title="Data",
-     *     description="Data wrapper"
-     * )
+     * @OA\Property(title="Data wrapper")
      *
+     * @var \App\Models\Ingredient[]
      */
+    private $data;
 
     /**
      * Transform the resource into an array.
