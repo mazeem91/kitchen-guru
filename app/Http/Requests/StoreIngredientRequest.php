@@ -6,6 +6,14 @@ use App\Models\Ingredient;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *      title="Store Ingredient request",
+ *      description="Store Ingredient request body data",
+ *      type="object",
+ *      required={"name"}
+ * )
+ */
 class StoreIngredientRequest extends FormRequest
 {
     /**
