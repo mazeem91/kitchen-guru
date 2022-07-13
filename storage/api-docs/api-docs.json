@@ -14,11 +14,11 @@
         "/crm/ingredients-required": {
             "get": {
                 "tags": [
-                    "Ingredients Required"
+                    "CRM"
                 ],
                 "summary": "Get list of Ingredients Required",
                 "description": "Returns list of Ingredients Required",
-                "operationId": "7aa3a905cd0c518848ff9f531b22ff86",
+                "operationId": "ListIngredientsRequired",
                 "parameters": [
                     {
                         "name": "order_date",
@@ -59,9 +59,10 @@
         "/sanctum/token": {
             "post": {
                 "tags": [
-                    "Authorization Token"
+                    "User"
                 ],
-                "operationId": "3d8811d9f8269fb7baaee89e47df211f",
+                "summary": "Generate JWT for user",
+                "operationId": "TokenGenerate",
                 "requestBody": {
                     "description": "The Token Request",
                     "required": true,

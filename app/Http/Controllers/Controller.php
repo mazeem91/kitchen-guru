@@ -28,7 +28,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-    * @OA\Post(path="/sanctum/token", tags={"Authorization Token"},
+    * @OA\Post(path="/sanctum/token", tags={"User"}, operationId="TokenGenerate", summary="Generate JWT for user",
     *   @OA\RequestBody(
     *       required=true,
     *       description="The Token Request",

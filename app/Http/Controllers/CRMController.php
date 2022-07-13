@@ -13,7 +13,8 @@ class CRMController extends Controller
     /**
      * @OA\Get(
      *      path="/crm/ingredients-required",
-     *      tags={"Ingredients Required"},
+     *      operationId="ListIngredientsRequired",
+     *      tags={"CRM"},
      *      summary="Get list of Ingredients Required",
      *      description="Returns list of Ingredients Required",
      *      security={{"bearerAuth":{}}},

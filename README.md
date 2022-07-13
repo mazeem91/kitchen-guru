@@ -16,7 +16,7 @@
 
 ## API Usage.
 - Visit http://localhost/api/documentation and check the documented APIs.
-- Generate JWT for `test` user via :
+- Generate JWT for `test` user via http://localhost/api/documentation#/User/TokenGenerate With :
     - email : `test@example.com`
     - password : `password`
     - device_name : `phone`
