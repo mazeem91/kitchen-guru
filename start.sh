@@ -20,8 +20,6 @@ fi
 
 cp .env.example .env
 
-./vendor/bin/sail up -d
-
-./vendor/bin/sail artisan migrate
+./vendor/bin/sail up -d & ./vendor/bin/sail artisan migrate
 
 echo "Setup Done Succesfully, services are up and running."

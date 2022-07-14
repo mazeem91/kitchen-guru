@@ -40,8 +40,14 @@ class Controller extends BaseController
     *   ),
     *   @OA\Response(
     *     response=200,
-    *     description="OK"
-    *   )
+    *     description="OK",
+    *     @OA\JsonContent(@OA\Schema(type="string"))
+    *   ),
+    *   @OA\Response(
+    *       response=422,
+    *       description="The provided credentials are incorrect",
+    *       @OA\JsonContent(@OA\Schema(type="string"))
+    *   ),
     * )
     */
     public function generateToken(Request $request)
