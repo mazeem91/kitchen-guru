@@ -1,0 +1,728 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Kitchen Guru OpenApi Demo Documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/crm/ingredients-required": {
+            "get": {
+                "tags": [
+                    "CRM"
+                ],
+                "summary": "Get list of Ingredients Required",
+                "description": "Returns list of Ingredients Required",
+                "operationId": "ListIngredientsRequired",
+                "parameters": [
+                    {
+                        "name": "order_date",
+                        "in": "query",
+                        "description": "order date",
+                        "required": false,
+                        "schema": {
+                            "type": "date",
+                            "example": "2022-07-10"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecipeIngredient"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/sanctum/token": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Generate JWT for user",
+                "operationId": "TokenGenerate",
+                "requestBody": {
+                    "description": "The Token Request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "test@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "device_name": {
+                                        "type": "string",
+                                        "example": "phone"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/ingredients": {
+            "get": {
+                "tags": [
+                    "Ingredients"
+                ],
+                "summary": "Get list of ingredients",
+                "description": "Returns list of ingredients",
+                "operationId": "getIngredientsList",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IngredientResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Ingredients"
+                ],
+                "summary": "Store new ingredient",
+                "description": "Returns ingredient data",
+                "operationId": "storeIngredient",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreIngredientRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IngredientResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/ingredients/{id}": {
+            "get": {
+                "tags": [
+                    "Ingredients"
+                ],
+                "summary": "Get ingredient information",
+                "description": "Returns ingredient data",
+                "operationId": "getIngredientById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ingredient id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IngredientResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/member-boxes": {
+            "get": {
+                "tags": [
+                    "MemberBoxes"
+                ],
+                "summary": "Get list of member-boxes",
+                "description": "Returns list of member-boxes",
+                "operationId": "getMemberBoxesList",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MemberBoxResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "MemberBoxes"
+                ],
+                "summary": "Store new member-box",
+                "description": "Returns member-box data",
+                "operationId": "storeMemberBox",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreMemberBoxRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MemberBoxResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/member-boxes/{id}": {
+            "get": {
+                "tags": [
+                    "MemberBoxes"
+                ],
+                "summary": "Get member-box information",
+                "description": "Returns member-box data",
+                "operationId": "getMemberBoxById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "MemberBox id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MemberBoxResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/recipes": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get list of recipes",
+                "description": "Returns list of recipes",
+                "operationId": "getRecipesList",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecipeResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Store new recipe",
+                "description": "Returns recipe data",
+                "operationId": "storeRecipe",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreRecipeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecipeResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/recipes/{id}": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get recipe information",
+                "description": "Returns recipe data",
+                "operationId": "getRecipeById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Recipe id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecipeResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "StoreIngredientRequest": {
+                "title": "Store Ingredient request",
+                "description": "Store Ingredient request body data",
+                "required": [
+                    "name",
+                    "supplier",
+                    "measure"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "supplier": {
+                        "type": "string"
+                    },
+                    "measure": {
+                        "type": "string",
+                        "enum": [
+                            "kg",
+                            "g",
+                            "pieces"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "StoreMemberBoxRequest": {
+                "title": "Store MemberBox request",
+                "description": "Store MemberBox request body data",
+                "required": [
+                    "delivery_date",
+                    "recipe_ids"
+                ],
+                "properties": {
+                    "delivery_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-07-10"
+                    },
+                    "recipe_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "StoreRecipeRequest": {
+                "title": "Store Recipe request",
+                "description": "Store Recipe request body data",
+                "required": [
+                    "name",
+                    "description",
+                    "recipe_ingredients"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "recipe_ingredients": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RecipeIngredient"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "IngredientResource": {
+                "title": "IngredientResource",
+                "description": "Ingredient resource",
+                "properties": {
+                    "data": {
+                        "title": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Ingredient"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "IngredientResource"
+                }
+            },
+            "MemberBoxResource": {
+                "title": "MemberBoxResource",
+                "description": "MemberBox resource",
+                "properties": {
+                    "data": {
+                        "title": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MemberBox"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "MemberBoxResource"
+                }
+            },
+            "RecipeResource": {
+                "title": "RecipeResource",
+                "description": "Recipe resource",
+                "properties": {
+                    "data": {
+                        "title": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Recipe"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "RecipeResource"
+                }
+            },
+            "Ingredient": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "supplier": {
+                        "type": "string"
+                    },
+                    "measure": {
+                        "type": "string",
+                        "enum": [
+                            "kg",
+                            "g",
+                            "pieces"
+                        ]
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Ingredient"
+                }
+            },
+            "MemberBox": {
+                "properties": {
+                    "user_id": {
+                        "type": "integer"
+                    },
+                    "delivery_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "recipes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Recipe"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "MemberBox"
+                }
+            },
+            "Recipe": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "recipe_ingredients": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RecipeIngredient"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Recipe"
+                }
+            },
+            "RecipeIngredient": {
+                "properties": {
+                    "ingredient_id": {
+                        "type": "integer"
+                    },
+                    "amount": {
+                        "type": "integer"
+                    },
+                    "amount_measure": {
+                        "type": "string",
+                        "enum": [
+                            "kg",
+                            "g",
+                            "pieces"
+                        ]
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "RecipeIngredient"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
