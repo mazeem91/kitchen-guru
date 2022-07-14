@@ -15,14 +15,14 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreMemberBoxRequest extends FormRequest
 {
     /**
-     * @OA\Property(example="2022-07-10")
+     * @OA\Property(example="2022-07-20")
      *
      * @var date
      */
     private $delivery_date;
 
      /**
-     * @OA\Property
+     * @OA\Property(example={2,3})
      *
      * @var int[]
      */

@@ -18,21 +18,21 @@ class Ingredient extends Model
     protected $fillable = ['name', 'supplier', 'measure'];
 
     /**
-     * @OA\Property
+     * @OA\Property(example="new ingredient")
      *
      * @var string
      */
     private $name;
 
      /**
-     * @OA\Property
+     * @OA\Property(example="new ingredient supplier")
      *
      * @var string
      */
     private $supplier;
 
      /**
-     * @OA\Property(enum={"kg", "g", "pieces"})
+     * @OA\Property(enum={"kg", "g", "pieces"}, example="g")
      *
      * @var string
      */

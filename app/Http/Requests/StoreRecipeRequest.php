@@ -15,14 +15,14 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreRecipeRequest extends FormRequest
 {
     /**
-     * @OA\Property
+     * @OA\Property(example="new recipe")
      *
      * @var string
      */
     private $name;
 
      /**
-     * @OA\Property
+     * @OA\Property(example="new recipe description")
      *
      * @var string
      */

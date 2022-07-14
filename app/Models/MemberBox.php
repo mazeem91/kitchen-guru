@@ -15,14 +15,14 @@ class MemberBox extends Model
     protected $fillable = ['user_id', 'delivery_date'];
 
     /**
-     * @OA\Property
+     * @OA\Property(example=1)
      *
      * @var int
      */
     private $user_id;
 
      /**
-     * @OA\Property
+     * @OA\Property(example="2022-07-20")
      *
      * @var date
      */

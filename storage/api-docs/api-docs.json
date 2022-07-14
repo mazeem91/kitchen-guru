@@ -529,10 +529,12 @@
                 ],
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "new ingredient"
                     },
                     "supplier": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "new ingredient supplier"
                     },
                     "measure": {
                         "type": "string",
@@ -540,7 +542,8 @@
                             "kg",
                             "g",
                             "pieces"
-                        ]
+                        ],
+                        "example": "g"
                     }
                 },
                 "type": "object"
@@ -556,13 +559,17 @@
                     "delivery_date": {
                         "type": "string",
                         "format": "date",
-                        "example": "2022-07-10"
+                        "example": "2022-07-20"
                     },
                     "recipe_ids": {
                         "type": "array",
                         "items": {
                             "type": "integer"
-                        }
+                        },
+                        "example": [
+                            2,
+                            3
+                        ]
                     }
                 },
                 "type": "object"
@@ -577,10 +584,12 @@
                 ],
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "new recipe"
                     },
                     "description": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "new recipe description"
                     },
                     "recipe_ingredients": {
                         "type": "array",
@@ -645,10 +654,12 @@
             "Ingredient": {
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "new ingredient"
                     },
                     "supplier": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "new ingredient supplier"
                     },
                     "measure": {
                         "type": "string",
@@ -656,7 +667,8 @@
                             "kg",
                             "g",
                             "pieces"
-                        ]
+                        ],
+                        "example": "g"
                     }
                 },
                 "type": "object",
@@ -667,11 +679,13 @@
             "MemberBox": {
                 "properties": {
                     "user_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "example": 1
                     },
                     "delivery_date": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "example": "2022-07-20"
                     },
                     "recipes": {
                         "type": "array",
@@ -688,10 +702,12 @@
             "Recipe": {
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "new recipe"
                     },
                     "description": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "new recipe description"
                     },
                     "recipe_ingredients": {
                         "type": "array",
@@ -708,18 +724,12 @@
             "RecipeIngredient": {
                 "properties": {
                     "ingredient_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "example": 1
                     },
                     "amount": {
-                        "type": "integer"
-                    },
-                    "amount_measure": {
-                        "type": "string",
-                        "enum": [
-                            "kg",
-                            "g",
-                            "pieces"
-                        ]
+                        "type": "integer",
+                        "example": 20
                     }
                 },
                 "type": "object",

@@ -16,14 +16,14 @@ class Recipe extends Model
     protected $fillable = ['name', 'description'];
 
     /**
-     * @OA\Property
+     * @OA\Property(example="new recipe")
      *
      * @var string
      */
     private $name;
 
      /**
-     * @OA\Property
+     * @OA\Property(example="new recipe description")
      *
      * @var string
      */

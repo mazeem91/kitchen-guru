@@ -15,23 +15,16 @@ class RecipeIngredient extends Model
     protected $fillable = ['recipe_id', 'ingredient_id', 'amount', 'amount_measure'];
 
     /**
-     * @OA\Property
+     * @OA\Property(example=1)
      *
      * @var int
      */
     private $ingredient_id;
 
      /**
-     * @OA\Property
+     * @OA\Property(example=20)
      *
      * @var int
      */
     private $amount;
-
-     /**
-     * @OA\Property(enum={"kg", "g", "pieces"})
-     *
-     * @var string
-     */
-    private $amount_measure;
 }
